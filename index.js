@@ -21,6 +21,8 @@ AKAhirwar.get("/", (req, res) => {
     return res.json({ books: database.books });
 })
 
+// -----------------------------------------------------------------------------------------------------------------------------------
+
 // API to get a specific book through ISBN number from any number of total book
 
 /* Route    -> is
@@ -44,6 +46,8 @@ AKAhirwar.get("/is/:isbn", (req, res) => {
 
     return res.json({ book: getSpecificBook });
 });
+
+// --------------------------------------------------------------------------------------------------------------------------------
 
 /* Route    -> /c    -> category
 Description -> To get Specific Books based on category
@@ -69,7 +73,7 @@ AKAhirwar.get("/c/:category", (req, res) => {
 
 
 
-
+// --------------------------------------------------------------------------------------------------------------------------------
 
 /* Route    -> /author
 Description -> To get all authors   
@@ -82,6 +86,7 @@ AKAhirwar.get("/author", (req, res) => {
     return res.json({ authors: database.authors });
 });
 
+// --------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /author
@@ -103,6 +108,8 @@ AKAhirwar.get("/author/:isbn", (req, res) => {
     return res.json({ author: getSpecificAuthors });
 });
 
+// --------------------------------------------------------------------------------------------------------------------------------
+
 /*
 Route           /publications
 Description     get all publications
@@ -115,6 +122,8 @@ AKAhirwar.get("/publications", (req, res) => {
     return res.json({ publications: database.publications });
 });
 
+
+// --------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /book/new
@@ -131,6 +140,7 @@ AKAhirwar.post("/book/new", (req, res) => {
     return res.json({ books: database.books, message: " books was added!!" })
 });
 
+// --------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /author/new
@@ -147,6 +157,7 @@ AKAhirwar.post("/author/new", (req, res) => {
     return res.json({ authors: database.authors, message: " Auhtors was added!!" })
 });
 
+// ---------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /publication/new
@@ -167,6 +178,7 @@ AKAhirwar.post("/publication/new", (req, res) => {
 });
 
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /book/update
@@ -188,6 +200,7 @@ AKAhirwar.put("/book/update/:isbn", (req, res) => {
     return res.json({ books: database.books })
 });
 
+// ------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /book/author/update/:isbn
@@ -216,6 +229,7 @@ AKAhirwar.put("/book/author/update/:isbn", (req, res) => {
     return res.json({ books: database.books, authors: database.authors, message: "New author was added!!!" })
 });
 
+// ----------------------------------------------------------------------------------------------------------------------------------------
 
 /*
 Route           /publication/update/book
@@ -247,6 +261,110 @@ AKAhirwar.put("/publication/update/book/:isbn", (req, res) => {
     });
 });
 
+// ---------------------------------------------------------------------------------------------------------------
+
+/*
+Route           /book/delete
+Description     delete a book
+Access          PUBLIC
+Parameters      isbn
+Method          DELETE
+*/
+
+AKAhirwar.delete("/book/delete/:isbn", (req, res) => {
+
+    const updatedBookDatabase = database.books.filter(
+        (book) => book.ISBN !== req.params.isbn)
+
+    return res.json({ book: database.books })
+
+});
+
+// -----------------------------------------------------------------------------------------------------------------------
+
+/*
+Route           /book/delete/author
+Description     delete a author from a book
+Access          PUBLIC
+Parameters      isbn
+Method          DELETE
+*/
+
+AKAhirwar.delete("/book/delete/author/:isbn/:authorId", (req, res) => {
+
+    // update the book database
+    database.books.forEach((book) => {
+        if (book.ISBN === req.params.isbn) {
+            const newAuthorList = book.authors.filter(
+                (author) => author !== parseInt(req.params.authorId)
+            );
+            book.authors = newAuthorList;
+            return;
+        }
+    });
+
+    // update the author database
+    database.authors.forEach((author) => {
+        if (author.Id === parseInt(req.params.authorId)) {
+            const newBookList = author.books.filter(
+                (book) => book !== req.params.isbn
+            )
+
+            author.books = newBookList;
+            return;
+        };
+
+    });
+
+    return res.json({
+        book: database.books,
+        author: database.authors,
+        message: "author was deleted😋😋"
+    })
+});
+
+// -------------------------------------------------------------------------------------------------------------------
+
+/*
+Route           /publication/delete/book
+Description     delete a book from a publication
+Access          PUBLIC
+Parameters      isbn, publication id
+Method          DELETE
+*/
+
+AKAhirwar.delete("/publication/delete/book/:isbn/:pubId" , (req, res) => {
+    // update the publication database
+    database.publications.forEach((publication) => {
+        if (publication.id === parseInt(req.params.pubId)) {
+            const newBookList = publication.books.filter(
+                (book) => book !== req.params.isbn)
+
+                publication.books = newBookList;
+                return;
+        }
+    })
+
+    // update book database
+
+    database.books.forEach((book) => {
+        if (book.ISBN === req.params.isbn) {
+            book.publication = 0; //no publication available
+            return;  
+        }
+    })
+    return res.json({
+        book: database.books,
+        publication: database.publications,
+        message: "publication has been removed🤔🤩"
+    })
+})
+
+
+
+// --------------------------------------------------------------------------------------------------------------------------------------
+
+
 AKAhirwar.listen(3000, () => console.log(
     "yehhh!!!    server is running!!!😎👌"
-))                              
+))
