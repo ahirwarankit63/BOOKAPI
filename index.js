@@ -1,14 +1,37 @@
+require("dotenv").config();
+
 // Frame work
 const express = require("express");
 
+const mongoose = require("mongoose");
+
 // Database
 const database = require("./database/index");
+
+// Models
+const BookModels = require("./database/book")
+const AuthorModel = require("./database/author");
+const PublicationModel = require("./database/publication");
+
 
 // Initializing Express
 const AKAhirwar = express();
 
 // configuration
 AKAhirwar.use(express.json());
+
+// Establish database connection
+mongoose.connect(process.env.MONGO_URL,
+    {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+    // useFindAndModif: true,
+    // useCreateIndex : true,
+    }
+)
+
+.then(() => console.log("connection established!!!!!"));
+
 
 /* Route
 Description -> To get all Book
@@ -333,15 +356,15 @@ Parameters      isbn, publication id
 Method          DELETE
 */
 
-AKAhirwar.delete("/publication/delete/book/:isbn/:pubId" , (req, res) => {
+AKAhirwar.delete("/publication/delete/book/:isbn/:pubId", (req, res) => {
     // update the publication database
     database.publications.forEach((publication) => {
         if (publication.id === parseInt(req.params.pubId)) {
             const newBookList = publication.books.filter(
                 (book) => book !== req.params.isbn)
 
-                publication.books = newBookList;
-                return;
+            publication.books = newBookList;
+            return;
         }
     })
 
@@ -350,7 +373,7 @@ AKAhirwar.delete("/publication/delete/book/:isbn/:pubId" , (req, res) => {
     database.books.forEach((book) => {
         if (book.ISBN === req.params.isbn) {
             book.publication = 0; //no publication available
-            return;  
+            return;
         }
     })
     return res.json({
@@ -367,4 +390,10 @@ AKAhirwar.delete("/publication/delete/book/:isbn/:pubId" , (req, res) => {
 
 AKAhirwar.listen(3000, () => console.log(
     "yehhh!!!    server is running!!!😎👌"
-))
+));
+
+
+
+
+
+
