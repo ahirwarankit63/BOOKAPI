@@ -33,9 +33,9 @@
 // Update book details
 // Update or add new author
 
-// DELETE 
-// Delete a Book 
-// Delete a author from Book
+// DELETE               
+// Delete a Book                ✅✅
+// Delete a author from Book    ✅✅
 
 
 
@@ -80,5 +80,9 @@
 // Update/Add new book to a publication
 
 // DELETE
-// Delete a book form publication
-// Delete a publication
+// Delete a book form publication                   ✅✅
+// Delete a publication                             !!!TASK!!
+
+
+// --------------------------------------------------------------------------------------------------
+
