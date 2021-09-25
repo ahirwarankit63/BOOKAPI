@@ -113,6 +113,8 @@ Access   - Public
 Method   - GET
 Params   - author
 Body     - none
+
+
 Author
 
 Route    - /author
@@ -135,6 +137,9 @@ Access   - Public
 Method   - GET
 Params   - author
 Body     - none
+
+
+
 Publication
 
 Route    - /publication
@@ -179,6 +184,9 @@ Access   - Public
 Method   - POST
 Params   - none
 Body     - none
+
+
+
 Publication
 
 Route    - /publication/new
@@ -217,6 +225,9 @@ Access   - Public
 Method   - PUT
 Params   - id
 Body     - { "name": { newName } }
+
+
+
 Publication
 
 Route    - /publication/update/:id
@@ -262,7 +273,11 @@ Access   - Public
 Method   - DELETE
 Params   - authorID
 Body     - none
+
+
+
 Publication
+
 
 Route    - /publication/delete/:publicationId
 Des      - delete a publication
@@ -270,6 +285,7 @@ Access   - Public
 Method   - DELETE
 Params   - publicationID
 Body     - none
+
 
 Route    - /publication/deleteBook/:publicationId/:bookId
 Des      - delete a book from publication
