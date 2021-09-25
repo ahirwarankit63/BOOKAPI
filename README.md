@@ -21,7 +21,10 @@ Publication
 - Id    - Number
 - Name  - String
 - Books - [Strings]
+
+
 <--------------------------- APIs ----------------------------->
+
 
 Book
 
@@ -73,9 +76,13 @@ Publication
 - DELETE
     - delete a publication
     - delete a book from publication
+
+
+
 <--------------------------- APIs Details ----------------------------->
 
 /* ------------------------ GET APIs -------------------------- */
+
 
 Book
 
@@ -150,7 +157,11 @@ Access   - Public
 Method   - GET
 Params   - book
 Body     - none
+
+
 /* ------------------------ POST APIs -------------------------- */
+
+
 
 Book
 
@@ -176,7 +187,12 @@ Access   - Public
 Method   - POST
 Params   - none
 Body     - none
+
+
+
 /* ------------------------ PUT APIs -------------------------- */
+
+
 
 Book
 
@@ -216,7 +232,12 @@ Access   - Public
 Method   - PUT
 Params   - id
 Body     - { "book": ISBN }
+
+
+
 /* ------------------------ DELETE APIs -------------------------- */
+
+
 
 Book
 
@@ -256,16 +277,3 @@ Access   - Public
 Method   - DELETE
 Params   - publicationID, bookID
 Body     - none
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
