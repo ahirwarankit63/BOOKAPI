@@ -1,88 +1,75 @@
-//Requirements
+/*
+Requirements
 
-// we have publications 
+Book
+    - ISBN          - String
+    - Title         - String
+    - Author        - [Numbers]
+    - Language      - String
+    - Publications  - Numbers
+    - NumOfPages    - Numbers
+    - Categories    - [String]
 
-// Book 
-// ISBN, Title, Author, Language, Pub Date, Num Page, Category[]
+Author
+    - Id    - Number
+    - Name  - String
+    - Books - [Strings]
 
-// Authors
+Publication
+    - Id    - Number
+    - Name  - String
+    - Books - [Strings]
 
-// Name, ID, Books[]
+--------------------------- APIs -----------------------------
 
-// Publications
-// Name, Id, Books[]
+Book
+    - GET
+        - to get all books ✅
+        - to get specific book ✅
+        - to get a list of books based on category ✅
+        - to get a list of books based on author ✅
 
+    - POST
+        - to add new books ✅
 
+    - PUT
+        - update book details ✅
+        - to update/add new author ✅
 
-// -------------------------------------------------------------------------------------------------
+    - DELETE
+        - delete a book ✅
+        - delete an author from the book ✅
 
+Author
+    - GET
+        - to get all authors ✅
+        - to get specific author ✅
+        - to get list of author based on a book ✅
 
-// Books
-// GET
-// we need an API
-// to get all books                                 ✅✅
-// to get specific books                            ✅✅
-// to get a list of books based on category         ✅✅
-// to get a list of book based on Auhtor            !!TASK!!
+    - POST
+        - to add new author ✅
 
+    - PUT
+        - update author details ✅
 
-// POST
-// New book             ✅✅
+    - DELETE
+        - delete an author ✅
 
-// PUT 
-// Update book details
-// Update or add new author
+Publication
+    - GET
+        - to get all publication ✅
+        - to get specific publication ✅
+        - to get a list of publication based on a book. ✅
 
-// DELETE               
-// Delete a Book                ✅✅
-// Delete a author from Book    ✅✅
+    - POST
+        - Add a new publication ✅
 
+    - PUT
+        - update publication ✅
+        - to update/add new book ✅
 
+    - DELETE
+        - delete a publication ✅
+        - delete a book from publication ✅
 
-// -------------------------------------------------------------------------------------------------------
-
-
-
-// Author
-// GET
-// we nees an API
-// to get a specific book                           ✅✅
-// to get specific author                           !!TASK!!
-// to get a list of authors asked on a book         ✅✅
-
-// POST
-// New Author                                       ✅✅
-
-// PUT
-// Author Deatils
-
-// DELETE
-// Delete An Author
-
-
-
-// -----------------------------------------------------------------------------------------------------
-
-
-
-// PUblication
-// GET
-// we need an API
-// to get all publications                          ✅✅
-// to get specific publication                      !!TASK!!
-// to get a list of publication based on a book     !!TASK!!
-
-// POST
-// Add new Publication                              !!TASK!!
-
-// PUT
-// Update Publication details                       ✅✅
-// Update/Add new book to a publication
-
-// DELETE
-// Delete a book form publication                   ✅✅
-// Delete a publication                             !!!TASK!!
-
-
-// --------------------------------------------------------------------------------------------------
-
+*/
